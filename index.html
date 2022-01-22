@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja" class="nprogress-busy">
+<meta charset="utf-8">
+<title>Handmade Tetris</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.3.1/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.3.1/addons/p5.sound.min.js"></script>
+<script src="lib/js/jquery.js"></script>
+<meta charset="utf-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid"><a class="navbar-brand" href="https://editor.p5js.org/gatolifechannel/present/6Y-USORuw">Tetris</a> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+                aria-expanded="false" aria-label="Toggle navigation"><span
+                    class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav"><a class="nav-link active" aria-current="page" unselectable="on" href="https://editor.p5js.org/gatolifechannel/present/6Y-USORuw"><i class="bi bi-house-fill"
+                            style="font-size:21px;" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            title="Home"></i></a>
+                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#setting_modal" onclick="toggle()"><i class="bi bi-gear-fill" style="font-size:21px;" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" title="Setting"></i></a>
+                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#information_modal" onclick="toggle()"><i class="bi bi-info-circle-fill" style="font-size:21px;"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Information"></i></a>
+                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#news_modal" onclick="toggle()"><i class="bi bi-newspaper" style="font-size:21px;" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" title="News"></i></a>
+                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#save_modal" onclick="toggle()"><i class="bi bi-save2-fill" style="font-size:21px;" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" title="Save"></i></a>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<main>
+    <audio id="m0" loop src="lib/music/Geoplex - Singularity.mp3"></audio>
+    <audio id="m1" loop src="lib/music/Geoplex - Glimmer.mp3"></audio>
+    <audio id="m2" loop src="lib/music/Geoplex - Zenith.mp3"></audio>
+    <audio id="m3" loop src="lib/music/Inukshuk - Forever.mp3"></audio>
+
+    <script src="js/document_ready.js"></script>
+    <script src="js/radio.js"></script>
+    <script src="js/back.js"></script>
+    <script src="js/light.js"></script>
+    <script src="js/effect.js"></script>
+    <script src="js/sketch.js"></script><canvas id="can"></canvas>
+    <script src="js/game.js"></script>
+    <div id="score_board">
+        <div class="adjust">
+            <p id="best_score"></p>
+            <p id="current_score"></p>
+        </div>
+    </div>
+    <div class="modal fade" id="setting_modal" tabindex="-1" aria-labelledby="setting_modal_label" aria-hidden>
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content" style="color:#fff">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="setting_modal_label"><i class="bi bi-gear-fill"></i> Setting</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <h6>Color</h6><br>
+                                <div class="form-check"><input id="red_back" class="form-check-input" type="radio" name="color" value="red"><label class="form-check-label" for="red_back">Red</label></div>
+                                <div class="form-check"><input class="form-check-input" type="radio" name="color" id="green_back" value="green"><label class="form-check-label" for="green_back">Green</label></div>
+                                <div class="form-check"><input class="form-check-input" type="radio" name="color" id="blue_back" value="blue"><label class="form-check-label" for="blue_back">Blue</label></div>
+                                <div class="form-check"><input id="white_baak" class="form-check-input" type="radio" name="color" value="white"><label class="form-check-label" for="white_back">White</label></div>
+                                <div class="form-check"><input id="aqua_back" class="form-check-input" type="radio" name="color" value="aqua"><label class="form-check-label" for="aqua_back">Aqua</label></div>
+                                <div class="form-check"><input id="lavender_back" class="form-check-input" type="radio" name="color" value="lavender"><label class="form-check-label" for="lavender_back">Lavender</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <h6>Effect Color</h6><br>
+                                <div class="form-check"><input id="red_effect" class="form-check-input" type="radio" name="effect_color" value="red_effect"><label class="form-check-label" for="red_effect">Red</label></div>
+                                <div class="form-check"><input class="form-check-input" type="radio" name="effect_color" id="green_effect" value="green_effect"><label class="form-check-label" for="green_effect">Green</label></div>
+                                <div class="form-check"><input class="form-check-input" type="radio" name="effect_color" id="blue_effect" value="blue_effect"><label class="form-check-label" for="blue_effect">Blue</label></div>
+                                <div class="form-check"><input id="white_effect" class="form-check-input" type="radio" name="effect_color" value="white_effect"><label class="form-check-label" for="white_effect">White</label></div>
+                                <div class="form-check"><input id="aqua_effect" class="form-check-input" type="radio" name="effect_color" value="aqua_effect"><label class="form-check-label" for="aqua_effect">Aqua</label></div>
+                                <div class="form-check"><input id="lavender_effect" class="form-check-input" type="radio" name="effect_color" value="lavender_effect"><label class="form-check-label" for="lavender_effect">Lavender</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <h6>Music</h6><br>
+                                <div class="form-check"><input id="music_0" class="form-check-input" type="radio" name="music" value="music_0"><label class="form-check-label" for="music_0">Geoplex -
+                                        Singularity</label>
+                                </div>
+                                <div class="form-check"><input id="music_1" class="form-check-input" type="radio" name="music" value="music_1"><label class="form-check-label" for="music_1">Geoplex - Glimmer</label>
+                                </div>
+                                <div class="form-check"><input id="music_2" class="form-check-input" type="radio" name="music" value="music_2"><label class="form-check-label" for="music_2">Geoplex - Zenith</label>
+                                </div>
+                                <div class="form-check"><input id="music_3" class="form-check-input" type="radio" name="music" value="music_3"><label class="form-check-label" for="music_3">Inukshuk - Forever</label>
+                                </div>
+                                <div class="form-check"><input id="no_music" class="form-check-input" type="radio" name="music" value="no_music"><label class="form-check-label" for="no_music">No
+                                        music</label></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="toggle()">Close</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="information_modal" tabindex="-1" aria-labelledby="information_modal_label" aria-hidden>
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content" style="color:#fff">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="information_modal_label"><i class="bi bi-info-circle-fill"></i> Information
+                    </h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h6>操作方法</h6>
+                    <p class="explain">■　Pボタンで一時停止/再開
+                        <p class="explain">■　Rでリトライ
+                            <p class="explain">
+                                ■　スペース or Fで回転
+                                <p class="explain">■　←/→ or J/Lで左右移動
+                                    <p class="explain">■　↓ or Dで落下
+                                        <p class="explain">
+                                            ■　Shift or Kで即落下
+                                            <h6>作品情報</h6>
+                                            <p class="explain">■　がとらいふ と その友達が共同で制作したテトリスです
+                                            </p>
+                                            <p class="explain">■　<a href="https://editor.p5js.org/gatolifechannel/sketches/6Y-USORuw" target="_blank" style="color:white">ソースコード</a>
+                                            </p>
+                                            <h6>
+                                                がとらいふ のアカウント</h6>
+                                            <a href="https://twitter.com/share?url=https://editor.p5js.org/gatolifechannel/present/6Y-USORuw&via=gatolife81&related=gatolife81&hashtags=テトリス,javascript&text=中学生が作ったテトリスだそうです。" target="_blank"><img src="lib/img/twitterのアイコン素材 その2.png" style="width:40px;margin-right:10px"></a>
+                                            <a href="https://www.youtube.com/channel/UCpAxm8y049dMgf3WRnY95Lw" target="_blank"><img src="lib/img/動画再生ボタン.png" style="width:40px"></a>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="toggle()">Close</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="news_modal" tabindex="-1" aria-labelledby="news_modal_label" aria-hidden>
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content" style="color:#fff">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="news_modal_label"><i class="bi bi-newspaper"></i> News</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h6>他作品</h6>
+                    <p class="explain">■　<a href="https://editor.p5js.org/gatolifechannel/present/xNqY4SMNy" 　target="_blank" style="color:white"> 空を舞うティーポット</a></p>
+                    <p class="explain">■　<a href="https://editor.p5js.org/gatolifechannel/present/QvY6HxXRZ" arget="_blank" style="color:white"> AIに絵を書かせてみた</a></p>
+                    <p class="explain">■　<a href="https://editor.p5js.org/gatolifechannel/present/4e_J6ka1S" target="_blank" style="color:white"> オーディオビジュアライザー</a></p>
+                    <p class="explain">■　<a href="https://editor.p5js.org/gatolifechannel/present/lAb0OUbua" target="_blank" style="color:white"> ブロック崩し</a></p>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="toggle()">Close</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="save_modal" tabindex="-1" aria-labelledby="save_modal_label" aria-hidden>
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content" style="color:#fff">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="news_modal_label"><i class="bi bi-save2-fill"></i> Save</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5>開発中</h5>
+                    <h6>スコアのインポート</h6>
+                    <input type="text">
+                    <h6>スコアのエクスポート</h6>
+                    <input type="text" readonly>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="toggle()">Close</button></div>
+            </div>
+        </div>
+    </div>
+</main>

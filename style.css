@@ -1,0 +1,186 @@
+@charset "UTF-8";
+body {
+    font-family: "Yu Mincho", "YuMincho", serif;
+    background: #000;
+    overflow: hidden;
+    user-select: none;
+}
+
+main {
+    width: 80%;
+    box-sizing: border-box;
+    margin: auto;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+main #score_board {
+    position: fixed;
+    float: right;
+    width: 300px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.4);
+    top: 70px;
+    right: 20px;
+    font-size: 30px;
+    text-align: center;
+    border-radius: 50px;
+}
+
+main #detail_board {
+    position: fixed;
+    float: right;
+    width: 30%;
+    margin: auto;
+    top: 500px;
+    right: 0;
+    font-size: 30px;
+    color: #fff;
+    text-align: center;
+}
+
+main .adjust {
+    width: 100%;
+    padding-top: 20%;
+}
+
+main #detail_board a {
+    color: #fff;
+}
+
+#best_score {
+    color: #00f;
+}
+
+main h1 {
+    text-align: center;
+    margin-top: 1px;
+    padding-top: 20px;
+    font-size: 40px;
+}
+
+main h2 {
+    margin-top: 100px;
+}
+
+main h2,
+main h3,
+main p,
+main ul {
+    padding-left: 70px;
+    padding-right: 70px;
+}
+
+#pause {
+    position: absolute;
+    top: 300px;
+    right: 600px;
+    width: 100px;
+    height: 100px;
+}
+
+small {
+    margin-left: 50px;
+}
+
+p {
+    line-height: 30px;
+}
+
+.explain {
+    font-size: 20px;
+}
+
+.modal-content {
+    background-color: #575757;
+}
+
+canvas {
+    display: block;
+    margin: auto;
+    background: rgba(100, 100, 100, 0.7);
+}
+
+.cp_ipradio {
+    width: 90%;
+    margin: 2em auto;
+    text-align: left;
+}
+
+.cp_ipradio input[type="radio"] {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+.cp_ipradio label {
+    position: relative;
+    display: inline-block;
+    margin-right: 30px;
+    padding-right: 10px;
+    padding-left: 35px;
+    cursor: pointer;
+}
+
+.cp_ipradio label::before {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 24px;
+    height: 24px;
+    content: " ";
+    border: 2px solid #da3c41;
+    border-radius: 4px;
+}
+
+.cp_ipradio input[type="radio"]+label::before {
+    border-radius: 18px;
+}
+
+.cp_ipradio input[type="radio"]:checked+label {
+    padding-left: 10px;
+    color: #fff;
+}
+
+.cp_ipradio input[type="radio"]:checked+label::before {
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #da3c41;
+}
+
+.cp_ipradio label,
+.cp_ipradio label::before {
+    -webkit-transition: 0.25s all ease;
+    transition: 0.25s all ease;
+}
+
+@media screen and (max-width: 599px) {
+    main {
+        width: 90%;
+    }
+    main h1 {
+        font-size: 50px;
+    }
+    main h2 {
+        font-size: 25px;
+    }
+    main li {
+        font-size: 20px;
+    }
+    main p {
+        font-size: 20px;
+        line-height: 50px;
+        padding: 0 30px 0;
+    }
+}
+
+#defaultCanvas0 {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
